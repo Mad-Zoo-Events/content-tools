@@ -1,9 +1,16 @@
 {
   "name": "content-tools",
+  "type": "module",
   "version": "1.0.0",
   "description": "A set of content generation utilities for MZE Minecraft events",
-  "main": "index.js",
+  "scripts": {
+    "generate-drinks": "node ./src/drinks/generate.js"
+  },
   "repository": "https://github.com/Mad-Zoo-Events/content-tools",
   "author": "Adrian Riedel <adrian.riedel@outlook.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "color-convert": "^2.0.1",
+    "js-yaml": "^4.1.0"
+  }
 }

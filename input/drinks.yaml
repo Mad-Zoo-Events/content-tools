@@ -1,0 +1,18 @@
+drinks:
+  - name: "Example Drink"
+    lore:
+      - "This first line is the most important one"
+      - "You can write as much stuff as you like"
+      - "as long as these lines don't get too long"
+    color: "#00AAFF"
+shots:
+  - name: "Example Shot"
+    lore:
+      - "Make sure you don't have two drinks"
+      - "or two shots with the same name."
+      - "The last one would overwrite the others."
+    color: "#EEAA00"
+  - name: "Another Example Shot"
+    lore:
+      - "One line is also fine."
+    color: "#AA00FF"
