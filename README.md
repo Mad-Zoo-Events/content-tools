@@ -1,2 +1,3 @@
-# content-tools
-A set of content generation utilities for MZE Minecraft events
+# Content Tools
+
+This repository contains a set of content generation utilities for MZE Minecraft events.

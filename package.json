@@ -1,0 +1,9 @@
+{
+  "name": "content-tools",
+  "version": "1.0.0",
+  "description": "A set of content generation utilities for MZE Minecraft events",
+  "main": "index.js",
+  "repository": "https://github.com/Mad-Zoo-Events/content-tools",
+  "author": "Adrian Riedel <adrian.riedel@outlook.com>",
+  "license": "MIT"
+}
