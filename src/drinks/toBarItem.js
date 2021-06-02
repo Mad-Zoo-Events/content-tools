@@ -1,0 +1,54 @@
+import convert from "color-convert";
+
+const NUMBER_BASEHEADS = [
+    "basehead-eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmQ2ODM0M2JkMGIxMjlkZTkzY2M4ZDNiYmEzYjk3YTJmYWE3YWRlMzhkOGE2ZTJiODY0Y2Q4NjhjZmFiIn19fQ==",
+    "basehead-eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDJhNmYwZTg0ZGFlZmM4YjIxYWE5OTQxNWIxNmVkNWZkYWE2ZDhkYzBjM2NkNTkxZjQ5Y2E4MzJiNTc1In19fQ==",
+    "basehead-eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTZmYWI5OTFkMDgzOTkzY2I4M2U0YmNmNDRhMGI2Y2VmYWM2NDdkNDE4OWVlOWNiODIzZTljYzE1NzFlMzgifX19",
+    "basehead-eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2QzMTliOTM0M2YxN2EzNTYzNmJjYmMyNmI4MTk2MjVhOTMzM2RlMzczNjExMWYyZTkzMjgyN2M4ZTc0OSJ9fX0=",
+    "basehead-eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDE5OGQ1NjIxNjE1NjExNDI2NTk3M2MyNThmNTdmYzc5ZDI0NmJiNjVlM2M3N2JiZTgzMTJlZTM1ZGI2In19fQ==",
+    "basehead-eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2ZiOTFiYjk3NzQ5ZDZhNmVlZDQ0NDlkMjNhZWEyODRkYzRkZTZjMzgxOGVlYTVjN2UxNDlkZGRhNmY3YzkifX19",
+    "basehead-eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWM2MTNmODBhNTU0OTE4YzdhYjJjZDRhMjc4NzUyZjE1MTQxMmE0NGE3M2Q3YTI4NmQ2MWQ0NWJlNGVhYWUxIn19fQ==",
+    "basehead-eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWUxOThmZDgzMWNiNjFmMzkyN2YyMWNmOGE3NDYzYWY1ZWEzYzdlNDNiZDNlOGVjN2QyOTQ4NjMxY2NlODc5In19fQ==",
+    "basehead-eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODRhZDEyYzJmMjFhMTk3MmYzZDJmMzgxZWQwNWE2Y2MwODg0ODlmY2ZkZjY4YTcxM2IzODc0ODJmZTkxZTIifX19",
+    "basehead-eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWY3YWEwZDk3OTgzY2Q2N2RmYjY3YjdkOWQ5YzY0MWJjOWFhMzRkOTY2MzJmMzcyZDI2ZmVlMTlmNzFmOGI3In19fQ==",
+    "basehead-eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjBjZjk3OTRmYmMwODlkYWIwMzcxNDFmNjc4NzVhYjM3ZmFkZDEyZjNiOTJkYmE3ZGQyMjg4ZjFlOTg4MzYifX19",
+    "basehead-eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzk5N2U3YzE5NGM0NzAyY2QyMTQ0MjhlMWY1ZTY0NjE1NzI2YTUyZjdjNmUzYTMzNzg5MzA5MWU3ODY3MjJhIn19fQ==",
+    "basehead-eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2UxNGYxNGYxZTEyZWE3MjU3NWY2ODEzNGJiNGYyYjllYzZjZTYyMDU1MjViZmM0YzYyNjU0YzU1ZGFlNTQ3In19fQ==",
+    "basehead-eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWQzZDVhMzE4MTlhZjU2NjVlMWNlMzk2YmJmOGYxZTRkOThmZmQxODIyMmRhNDZmYWRiNjFjZjc5NTYyZjgifX19",
+    "basehead-eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWRjM2MyMjhkYzE3MjU0MTI0YjZiZTUxZjVjYjI2ZDA4Zjg5NzI3YWQyNzQ2M2ZmOWM0YmMyOTkxOGUxYWIifX19",
+    "basehead-eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjZiZWMzOGQyNmMwMmY0M2RjYmY5YjFkNDhiMzRmMWJjNDczN2E2OTM4ZjI2NjRkNGU3NjQyNzJhOWIzOWI2MSJ9fX0=",
+    "basehead-eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDJkOTc4NmEzMTJjYjBiNTE2NzMxMmY0M2Q3NDcxNTBlN2ViNTI4YzNkNmU5ZGQyNzQzODUwN2RkOTc5YTdmMyJ9fX0=",
+    "basehead-eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2JlMjBlZGY3YzJlZTY1MjUxZjc3MWQ4NjczZDViYTcyYWRmODk0NWQzZWIyN2Q3OWI5YmE5NzQwN2Y3NiJ9fX0=",
+    "basehead-eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWJlYjY0Y2Y4MjY4MzFlY2EyNDZmMTJjM2QzOTdmNjg4MWRlY2Y5OGFkZTg4N2U2YmMwMWFiNTQyNjMxMjgifX19",
+    "basehead-eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWY0ZGUxMjgyZmJlMzg0OTc1ZDkxYzdlYzRlMmRmMmZmMTdjOWRhNDY0MmJiNGFlMzZhZjQ1NDFhNDk4N2IxNiJ9fX0=",
+    "basehead-eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjdiMjlhMWJiMjViMmFkOGZmM2E3YTM4MjI4MTg5Yzk0NjFmNDU3YTRkYTk4ZGFlMjkzODRjNWMyNWQ4NSJ9fX0=",
+];
+
+const toBarItem = (item, isShot, id, index, slot) => {
+    const displayName = `&f${item.name} &f(&e&ofree&f)`;
+
+    const lore = isShot
+        ? ["&7(shot)"]
+        : undefined;
+
+    const sound = isShot
+        ? "BLOCK_BREWING_STAND_BREW"
+        : "ITEM_BOTTLE_FILL";
+
+    return {
+        material: NUMBER_BASEHEADS[index + 1],
+        slot,
+        display_name: displayName,
+        lore,
+        hide_attributes: true,
+        hide_enchantments: true,
+        hide_effects: true,
+        left_click_commands: [
+            `[sound] ${sound}`,
+            "[close]",
+            `[console] serveritem give ${id} 1 %player_name% true`
+        ]
+    };
+};
+
+export default toBarItem;

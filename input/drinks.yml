@@ -16,3 +16,7 @@ shots:
     lore:
       - "One line is also fine."
     color: "#AA00FF"
+  - name: "One Last Shot"
+    lore:
+      - "You will need to provide an odd number of drinks and shots"
+    color: "#00FFFF"
