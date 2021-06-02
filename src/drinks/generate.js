@@ -24,7 +24,7 @@ const run = () => {
 
 const load = () => {
     try {
-        const fileContents = fs.readFileSync("./input/drinks.yaml", "utf8");
+        const fileContents = fs.readFileSync("./input/drinks.yml", "utf8");
         const data = yaml.load(fileContents);
 
         if (!data.drinks) {
@@ -44,7 +44,7 @@ const load = () => {
 const save = (serverItems, deluxeMenu) => {
     try {
         const fileContents = yaml.dump(serverItems);
-        fs.writeFileSync("./out/drinks_serveritems.yaml", fileContents, "utf8");
+        fs.writeFileSync("./out/drinks_serveritems.yml", fileContents, "utf8");
     } catch (e) {
         console.error(e);
     }

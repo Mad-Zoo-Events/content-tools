@@ -10,8 +10,8 @@ This repository contains a set of content generation utilities for MZE Minecraft
 Drinks are represented in two locations: as a `ItemEdit` server item and in the corresponding `DeluxeMenus` GUI menu.
 
 **To Generate drinks**
-- write them into [input/drinks.yaml](input/drinks.yaml) 
+- write them into [input/drinks.yml](input/drinks.yml) 
 - run `yarn generate-drinks`
 - find your generated files in the [out](out) directory
 
-After that's done, merge the resulting contents of `drinks_serveritems.yaml` with `plugins/ItemEdit/database/server-database.yml` and replace `bar.yml` under `plugins/DeluxeMenus/gui_menus` on the Minecraft servers.
+After that's done, merge the resulting contents of `drinks_serveritems.yml` with `plugins/ItemEdit/database/server-database.yml` and replace `bar.yml` under `plugins/DeluxeMenus/gui_menus` on the Minecraft servers.
